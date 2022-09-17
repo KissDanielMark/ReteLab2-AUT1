@@ -1,10 +1,8 @@
 package hu.bme.aut.retelab2.repository;
 
 import hu.bme.aut.retelab2.domain.Ad;
-import hu.bme.aut.retelab2.domain.Note;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -24,4 +22,18 @@ public class AdRepository {
         System.out.println("minimum ertek: "+minPrice+" maximum ertek: "+maxPrice);
         return em.createQuery("SELECT n FROM Ad n WHERE n.price BETWEEN ?1 AND ?2", Ad.class).setParameter(1, minPrice).setParameter(2,maxPrice).getResultList();
     }
+
+    public Ad find(Ad input) {
+        Ad found = em.find(Ad.class, input.getId());
+        if(found.getCode().equals(input.getCode()))
+        {
+            return found;
+        }
+        else{
+            return null;
+        }
+    }
+
+
+
 }

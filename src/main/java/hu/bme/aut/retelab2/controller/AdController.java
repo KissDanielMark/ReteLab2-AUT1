@@ -2,8 +2,11 @@ package hu.bme.aut.retelab2.controller;
 
 import hu.bme.aut.retelab2.SecretGenerator;
 import hu.bme.aut.retelab2.domain.Ad;
+import hu.bme.aut.retelab2.domain.Note;
 import hu.bme.aut.retelab2.repository.AdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +35,14 @@ public class AdController {
             eredmeny.get(i).setCode(null);
         }
         return eredmeny;
+    }
+
+    @PutMapping
+    public ResponseEntity<Ad> update(@RequestBody Ad ad) {
+        Ad a = adRepository.find(ad);
+        if (a == null)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        a = adRepository.save(ad);
+        return ResponseEntity.ok(a);
     }
 }
