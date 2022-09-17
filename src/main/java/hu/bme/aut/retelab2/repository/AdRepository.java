@@ -18,7 +18,7 @@ public class AdRepository {
     public Ad save(Ad adData) {
         return em.merge(adData);
     }
-    
+
     public List<Ad> findByPriceRange(Integer minPrice, Integer maxPrice) {
         //TODO: SQL should be written
         System.out.println("minimum ertek: "+minPrice+" maximum ertek: "+maxPrice);

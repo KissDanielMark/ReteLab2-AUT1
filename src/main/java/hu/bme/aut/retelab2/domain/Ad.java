@@ -19,6 +19,8 @@ public class Ad {
     @CreationTimestamp
     private Date creationDate;
 
+    private String code;
+
     public Long getId() {
         return id;
     }
@@ -52,5 +54,12 @@ public class Ad {
     }
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getCode() {
+        return code;
+    }
+    public void setCode(String code) {
+        this.code = code;
     }
 }
