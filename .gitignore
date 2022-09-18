@@ -5,3 +5,6 @@ target/classes/hu/bme/aut/retelab2/repository/AdRepository.class
 target/classes/hu/bme/aut/retelab2/domain/Ad.class
 target/classes/hu/bme/aut/retelab2/controller/AdController.class
 target/classes/hu/bme/aut/retelab2/Application.class
+target/classes/hu/bme/aut/retelab2/repository/AdRepository.class
+target/classes/hu/bme/aut/retelab2/domain/Ad.class
+target/classes/hu/bme/aut/retelab2/controller/AdController.class

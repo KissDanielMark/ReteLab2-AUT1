@@ -18,8 +18,7 @@ public class Ad {
     private Integer price;
     @CreationTimestamp
     private Date creationDate;
-    @ElementCollection
-    private List<String> tags;
+    private String tags;
 
     private LocalDateTime endDateTime;
 
@@ -67,11 +66,11 @@ public class Ad {
         this.code = code;
     }
 
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
     public void setTag(String newTag) {
-        this.tags.add(newTag);
+        this.tags = newTag;
     }
 
     public LocalDateTime getEndDateTime() {
@@ -79,9 +78,5 @@ public class Ad {
     }
     public void setEndDateTime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
-    }
-
-    public void deleteTags(){
-        tags = null;
     }
 }
