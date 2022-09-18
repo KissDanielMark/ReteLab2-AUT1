@@ -18,11 +18,13 @@ public class Ad {
     private Integer price;
     @CreationTimestamp
     private Date creationDate;
+
+    private String code;
     private String tags;
 
     private LocalDateTime endDateTime;
 
-    private String code;
+
 
     public Long getId() {
         return id;
