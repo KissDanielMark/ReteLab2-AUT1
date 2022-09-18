@@ -45,4 +45,16 @@ public class AdController {
         a = adRepository.save(ad);
         return ResponseEntity.ok(a);
     }
+
+    @GetMapping("{tag}")
+    public List<Ad> getByTag(@PathVariable String tag)
+    {
+        System.out.println("EZT A TAGET KERESSÜK"+tag);
+        List<Ad> eredmeny =  adRepository.findByTag(tag);
+        for(int i = 0;i<eredmeny.size();i++)
+        {
+            eredmeny.get(i).setCode(null);
+        }
+        return eredmeny;
+    }
 }

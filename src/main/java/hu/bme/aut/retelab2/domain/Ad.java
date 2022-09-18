@@ -2,11 +2,10 @@ package hu.bme.aut.retelab2.domain;
 
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
 public class Ad {
@@ -18,6 +17,8 @@ public class Ad {
     private Integer price;
     @CreationTimestamp
     private Date creationDate;
+    @ElementCollection
+    private List<String> tags;
 
     private String code;
 
@@ -61,5 +62,12 @@ public class Ad {
     }
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+    public void setTag(String newTag) {
+        this.tags.add(newTag);
     }
 }

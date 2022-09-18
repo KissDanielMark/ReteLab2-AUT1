@@ -14,6 +14,7 @@ public class AdRepository {
 
     @Transactional
     public Ad save(Ad adData) {
+        System.out.println("ENITITY MANAGER:"+em);
         return em.merge(adData);
     }
 
@@ -32,6 +33,11 @@ public class AdRepository {
         else{
             return null;
         }
+    }
+
+    public List<Ad> findByTag(String tag) {
+        return em.createQuery("SELECT a FROM Ad a JOIN a.tags b WHERE b = :tag", Ad.class).setParameter("tag",tag).getResultList();
+
     }
 
 
