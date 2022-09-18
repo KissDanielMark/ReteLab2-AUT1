@@ -7,8 +7,11 @@ import hu.bme.aut.retelab2.repository.AdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -56,5 +59,23 @@ public class AdController {
             eredmeny.get(i).setCode(null);
         }
         return eredmeny;
+    }
+
+    @Scheduled(fixedDelay= 10000)
+    protected void deletePeriodicly()
+    {
+        System.out.println("going for delete...");
+        LocalDateTime current = LocalDateTime.now();
+        System.out.println(current);
+        List<Ad> eredmeny =  adRepository.findByPriceRange(0, 10000000);
+        for(int i = 0;i<eredmeny.size();i++)
+        {
+            if(current.isAfter(eredmeny.get(i).getEndDateTime()))
+            {
+                System.out.println("törölni kell");
+                adRepository.remove(eredmeny.get(i));
+            }
+
+        }
     }
 }

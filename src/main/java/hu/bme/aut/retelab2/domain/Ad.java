@@ -3,6 +3,7 @@ package hu.bme.aut.retelab2.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Ad {
     private Date creationDate;
     @ElementCollection
     private List<String> tags;
+
+    private LocalDateTime endDateTime;
 
     private String code;
 
@@ -69,5 +72,16 @@ public class Ad {
     }
     public void setTag(String newTag) {
         this.tags.add(newTag);
+    }
+
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
+    public void deleteTags(){
+        tags = null;
     }
 }

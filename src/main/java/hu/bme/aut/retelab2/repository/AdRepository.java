@@ -1,10 +1,12 @@
 package hu.bme.aut.retelab2.repository;
 
 import hu.bme.aut.retelab2.domain.Ad;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -35,8 +37,17 @@ public class AdRepository {
         }
     }
 
+    //https://thorben-janssen.com/hibernate-tips-query-elementcollection/
     public List<Ad> findByTag(String tag) {
         return em.createQuery("SELECT a FROM Ad a JOIN a.tags b WHERE b = :tag", Ad.class).setParameter("tag",tag).getResultList();
+
+    }
+    @Transactional
+    public void remove(Ad input)
+    {
+        input.deleteTags();
+        em.createQuery("delete from Ad p where p.id=:id").setParameter("id", input.getId()).executeUpdate();
+        System.out.println("deleted");
 
     }
 
