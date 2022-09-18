@@ -16,13 +16,13 @@ public class AdRepository {
 
     @Transactional
     public Ad save(Ad adData) {
-        System.out.println("ENITITY MANAGER:"+em);
+        //System.out.println("ENITITY MANAGER:"+em);
         return em.merge(adData);
     }
 
     public List<Ad> findByPriceRange(Integer minPrice, Integer maxPrice) {
         //TODO: SQL should be written
-        System.out.println("minimum ertek: "+minPrice+" maximum ertek: "+maxPrice);
+        //System.out.println("minimum ertek: "+minPrice+" maximum ertek: "+maxPrice);
         return em.createQuery("SELECT n FROM Ad n WHERE n.price BETWEEN ?1 AND ?2", Ad.class).setParameter(1, minPrice).setParameter(2,maxPrice).getResultList();
     }
 
@@ -45,8 +45,8 @@ public class AdRepository {
     @Transactional
     public void remove(Ad input)
     {
-        em.createQuery("delete from Ad p where p.id=:id").setParameter("id", input.getId()).executeUpdate();
-        System.out.println("deleted");
+        int valasz = em.createQuery("delete from Ad p where p.id=:id").setParameter("id", input.getId()).executeUpdate();
+        if(valasz == 1) System.out.println("deleted");
     }
 
 
