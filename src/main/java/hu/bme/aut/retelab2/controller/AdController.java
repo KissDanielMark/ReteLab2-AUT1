@@ -73,7 +73,7 @@ public class AdController {
         return eredmeny;
     }
 
-    /*@Scheduled(fixedDelay= 10000)
+    @Scheduled(fixedDelay= 30000)
     protected void deletePeriodicly()
     {
         System.out.println("going for delete...");
@@ -89,5 +89,5 @@ public class AdController {
             }
 
         }
-    }*/
+    }
 }
