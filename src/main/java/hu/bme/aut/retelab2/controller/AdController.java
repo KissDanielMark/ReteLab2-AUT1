@@ -80,6 +80,7 @@ public class AdController {
         LocalDateTime current = LocalDateTime.now();
         System.out.println(current);
         List<Ad> eredmeny =  adRepository.findByPriceRange(0, 10000000);
+        //foreach
         for(int i = 0;i<eredmeny.size();i++)
         {
             if(current.isAfter(eredmeny.get(i).getEndDateTime()))
