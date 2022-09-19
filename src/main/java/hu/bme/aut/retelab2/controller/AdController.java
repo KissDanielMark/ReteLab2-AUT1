@@ -49,6 +49,18 @@ public class AdController {
         return ResponseEntity.ok(a);
     }
 
+    /*@GetMapping("{tag}")
+    public List<Ad> getByTag(@PathVariable String tag)
+    {
+        System.out.println("EZT A TAGET KERESSÜK"+tag);
+        List<Ad> eredmeny =  adRepository.findByTag(tag);
+        for(int i = 0;i<eredmeny.size();i++)
+        {
+            eredmeny.get(i).setCode(null);
+        }
+        return eredmeny;
+    }*/
+
     @GetMapping("{tag}")
     public List<Ad> getByTag(@PathVariable String tag)
     {
@@ -61,7 +73,7 @@ public class AdController {
         return eredmeny;
     }
 
-    @Scheduled(fixedDelay= 10000)
+    /*@Scheduled(fixedDelay= 10000)
     protected void deletePeriodicly()
     {
         System.out.println("going for delete...");
@@ -77,5 +89,5 @@ public class AdController {
             }
 
         }
-    }
+    }*/
 }
